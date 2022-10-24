@@ -11,8 +11,12 @@ Ogni post dovrà avere le informazioni necessarie per stampare la relativa card:
 - numero di likes.
 *Non è necessario creare date casuali*
 *Per le immagini va bene utilizzare qualsiasi servizio di placeholder ad es. Unsplash (https://unsplash.it/300/300?image=<id>)*
-Milestone 2 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
-Milestone 3- Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
+
+Milestone 2 
+Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
+
+Milestone 3
+Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
 Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 
 BONUS
@@ -101,11 +105,29 @@ function postStructure(postOnSocial){
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${postOnSocial[i].author.name}</div>
-                    <div class="post-meta__time">${postOnSocial[i].created}</div>
+                    <div class="post-meta__time">Posted on ${postOnSocial[i].created}</div>
                 </div>                    
             </div>
         </div>
+        <div class="post__text"> ${postOnSocial[i].content}</div>
+
         
+        <div class="post__image">
+            <img src="${postOnSocial[i].media}" alt="">
+        </div>
+        <div class="post__footer">
+            <div class="likes js-likes">
+                <div class="likes__cta">
+                    <a class="like-button js-like-button" href="#" data-postid="1">
+                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                        <span class="like-button__label">Like</span>
+                    </a>
+                </div>
+                <div class="likes__counter">
+                    <b id="like-counter-1" class="js-likes-counter">${postOnSocial[i].likes}</b> people likes your post
+                </div>
+            </div> 
+        </div>         
         `;  
         post.innerHTML += stucturePost;
         postOnOutput.append(post);  
