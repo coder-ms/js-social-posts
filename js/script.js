@@ -131,17 +131,16 @@ function postStructure(postOnSocial){
         `;  
         post.innerHTML += stucturePost;
         postOnOutput.append(post);  
-        let counterLikes = document.querySelector('.like-button');
+        let counterLikes = document.querySelectorAll('.like-button');
         counter = postOnSocial[i].likes;
-        counterLikes.addEventListener('click', likeForLikes);
-        function likeForLikes(){
-            counter++;
-            document.querySelector('#like-counter-1').innerHTML = counter;
-            console.log(counter);
-        }
+        counterLikes[i].addEventListener('click', likeForLikes);
     
     }
-
+    function likeForLikes(){
+        counter++;
+        document.querySelectorAll('#like-counter-1').innerHTML = counter;
+        console.log(counter);
+    }
 
 
 }
