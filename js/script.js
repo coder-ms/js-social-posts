@@ -131,8 +131,16 @@ function postStructure(postOnSocial){
         `;  
         post.innerHTML += stucturePost;
         postOnOutput.append(post);  
+        let counterLikes = document.querySelector('.like-button');
+        counter = postOnSocial[i].likes;
+        counterLikes.addEventListener('click', likeForLikes);
+        function likeForLikes(){
+            counter++;
+            document.querySelector('#like-counter-1').innerHTML = counter;
+            console.log(counter);
+        }
+    
     }
-
 
 
 
