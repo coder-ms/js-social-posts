@@ -136,13 +136,11 @@ function postStructure(postOnSocial){
         counterLikes[i].addEventListener('click', likeForLikes);
     
     }
-    function likeForLikes(){
-        counter++;
-        document.querySelectorAll('#like-counter-1').innerHTML = counter;
-        console.log(counter);
-    }
-
-
+}
+function likeForLikes(){
+    counter++;
+    document.querySelectorAll('#like-counter-1').innerHTML = counter;
+    console.log(counter);
 }
 
 postStructure(posts);
