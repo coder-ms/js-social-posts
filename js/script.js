@@ -79,7 +79,10 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+// Array
 console.log(posts);
+
+
 
 
 function postStructure(postOnSocial){
@@ -88,25 +91,29 @@ function postStructure(postOnSocial){
     const post = document.createElement('div');
     post.className = 'post';
 
-    const stucturePost = `
+    for(let i = 0; i < postOnSocial.length; i++){
+        const stucturePost = `
     
-    <div class="post__header">
-        <div class="post-meta">                    
-            <div class="post-meta__icon">
-                <img class="profile-pic" src="${postOnSocial.author}" alt="Phil Mangione">                    
+        <div class="post__header">
+            <div class="post-meta">                    
+                <div class="post-meta__icon">
+                    <img class="profile-pic" src="${postOnSocial[i].author.image}" alt="">                    
+                </div>
+                <div class="post-meta__data">
+                    <div class="post-meta__author">${postOnSocial[i].author.name}</div>
+                    <div class="post-meta__time">${postOnSocial[i].created}</div>
+                </div>                    
             </div>
-            <div class="post-meta__data">
-                <div class="post-meta__author">${postOnSocial.author}</div>
-                <div class="post-meta__time">${postOnSocial.created}</div>
-            </div>                    
         </div>
-    </div>
-    
-    `;
+        
+        `;  
+        post.innerHTML += stucturePost;
+        postOnOutput.append(post);  
+    }
 
-    post.innerHTML += stucturePost;
-    postOnOutput.append(post);
+
+
 
 }
 
-postStructure();
+postStructure(posts);
