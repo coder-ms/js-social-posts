@@ -79,8 +79,33 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+console.log(posts);
 
-function postStructure(){
-    console.log('ciao');
+
+function postStructure(postOnSocial){
+
+    const postOnOutput = document.getElementById('postOnOutput');
+    const post = document.createElement('div');
+    post.className = 'post';
+
+    const stucturePost = `
+    
+    <div class="post__header">
+        <div class="post-meta">                    
+            <div class="post-meta__icon">
+                <img class="profile-pic" src="${postOnSocial.author}" alt="Phil Mangione">                    
+            </div>
+            <div class="post-meta__data">
+                <div class="post-meta__author">${postOnSocial.author}</div>
+                <div class="post-meta__time">${postOnSocial.created}</div>
+            </div>                    
+        </div>
+    </div>
+    
+    `;
+
+    post.innerHTML += stucturePost;
+    postOnOutput.append(post);
+
 }
 
