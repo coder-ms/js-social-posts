@@ -109,3 +109,4 @@ function postStructure(postOnSocial){
 
 }
 
+postStructure();
