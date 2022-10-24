@@ -35,7 +35,7 @@ const posts = [
             "name": "Phil Mangione",
             "image": "https://unsplash.it/300/300?image=15"
         },
-        "likes": 80,
+        "likes": 10,
         "created": "2021-06-25"
     },
     {
@@ -46,7 +46,7 @@ const posts = [
             "name": "Sofia Perlari",
             "image": "https://unsplash.it/300/300?image=10"
         },
-        "likes": 120,
+        "likes": 20,
         "created": "2021-09-03"
     },
     {
@@ -57,7 +57,7 @@ const posts = [
             "name": "Chiara Passaro",
             "image": "https://unsplash.it/300/300?image=20"
         },
-        "likes": 78,
+        "likes": 30,
         "created": "2021-05-15"
     },
     {
@@ -66,9 +66,9 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": "https://unsplash.it/300/300?image=20"
         },
-        "likes": 56,
+        "likes": 40,
         "created": "2021-04-03"
     },
     {
@@ -79,23 +79,35 @@ const posts = [
             "name": "Alessandro Sainato",
             "image": "https://unsplash.it/300/300?image=29"
         },
-        "likes": 95,
+        "likes": 50,
         "created": "2021-03-05"
     }
 ];
 // Array
-console.log(posts);
+//console.log(posts);
 
 
+// Like function
+function likeForLikes( hCnt ){
+
+    let counter = hCnt.innerHTML;
+    //console.log('counter = ' + counter);
+    counter++;
+    hCnt.innerHTML = counter;
+}
 
 
+// Struttura interna post
 function postStructure(postOnSocial){
 
     const postOnOutput = document.getElementById('postOnOutput');
     const post = document.createElement('div');
     post.className = 'post';
 
+    // 1) Creo struttura da visualizzare 
     for(let i = 0; i < postOnSocial.length; i++){
+
+        // Creo elemento div 
         const stucturePost = `
     
         <div class="post__header">
@@ -118,7 +130,7 @@ function postStructure(postOnSocial){
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button js-like-button" href="#" data-postid="1">
+                    <a class="like-button js-like-button" data-postid="1">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Like</span>
                     </a>
@@ -129,18 +141,30 @@ function postStructure(postOnSocial){
             </div> 
         </div>         
         `;  
+        // 
         post.innerHTML += stucturePost;
         postOnOutput.append(post);  
-        let counterLikes = document.querySelectorAll('.like-button');
-        counter = postOnSocial[i].likes;
-        counterLikes[i].addEventListener('click', likeForLikes);
-    
+
+    }  // end for()
+
+    // 2) Recupero tutti gli elementi dell'array pulsante 
+    let counterLikesBut = document.querySelectorAll('.like-button');
+
+    // 3) Recupero tutti gli elementi dell'array like counter 
+    let counterLikesCnt = document.querySelectorAll('.js-likes-counter');
+
+    // 4) Scansione sugli elementi e assegno valore iniziale a like counter 
+    for(let i=0; i < counterLikesBut.length; i++){
+        // 4.1 Impostiamo i like al valore della structura
+        let counter = postOnSocial[i].likes;
+        counterLikesCnt[i].innerHTML = counter;
+
+        // 4.2) Add event listener per il puls passandogli il puntatore a obj like counter 
+        counterLikesBut[i].addEventListener('click', function () { likeForLikes(counterLikesCnt[i]); }, false );
     }
-}
-function likeForLikes(){
-    counter++;
-    document.querySelectorAll('#like-counter-1').innerHTML = counter;
-    console.log(counter);
+      
+
 }
 
+//
 postStructure(posts);
